@@ -3,64 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tài Xỉu 3D Luxury</title>
+    <title>Casino 3D - Tài Xỉu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
-        <h1 class="title">TÀI XỈU <span>3D CASINO</span></h1>
+        <div class="auth-header">
+            <span id="user-display">Khách</span> | <b id="balance-display">0đ</b>
+            <button onclick="toggleAuthModal()">Tài khoản</button>
+        </div>
+
+        <h1 class="title">TÀI XỈU <span>3D</span></h1>
 
         <div class="dice-wrapper">
-            <div class="dice-3d" id="cube1">
-                <div class="face front">1</div>
-                <div class="face back">6</div>
-                <div class="face right">3</div>
-                <div class="face left">4</div>
-                <div class="face top">2</div>
-                <div class="face bottom">5</div>
-            </div>
-            <div class="dice-3d" id="cube2">
-                <div class="face front">1</div>
-                <div class="face back">6</div>
-                <div class="face right">3</div>
-                <div class="face left">4</div>
-                <div class="face top">2</div>
-                <div class="face bottom">5</div>
-            </div>
-            <div class="dice-3d" id="cube3">
-                <div class="face front">1</div>
-                <div class="face back">6</div>
-                <div class="face right">3</div>
-                <div class="face left">4</div>
-                <div class="face top">2</div>
-                <div class="face bottom">5</div>
-            </div>
+            <div class="dice-3d" id="cube1"><div class="face front">1</div><div class="face back">6</div><div class="face right">3</div><div class="face left">4</div><div class="face top">2</div><div class="face bottom">5</div></div>
+            <div class="dice-3d" id="cube2"><div class="face front">1</div><div class="face back">6</div><div class="face right">3</div><div class="face left">4</div><div class="face top">2</div><div class="face bottom">5</div></div>
+            <div class="dice-3d" id="cube3"><div class="face front">1</div><div class="face back">6</div><div class="face right">3</div><div class="face left">4</div><div class="face top">2</div><div class="face bottom">5</div></div>
         </div>
 
-        <div class="result-display">
-            Tổng điểm: <span id="result-score">?</span> - <span id="result-text">Đang chờ...</span>
-        </div>
+        <div id="status">Sẵn sàng đặt cược</div>
 
         <div class="betting-section">
-            <button class="bet-btn tai" onclick="rollDice()">
-                <span class="label">TÀI</span>
-                <span class="range">11 - 17</span>
-            </button>
-            
-            <div class="timer">
-                <div class="timer-ring"></div>
-                <span id="countdown">30</span>
-            </div>
-
-            <button class="bet-btn xiu" onclick="rollDice()">
-                <span class="label">XỈU</span>
-                <span class="range">3 - 10</span>
-            </button>
+            <button class="bet-btn tai" onclick="placeBet('TAI')"><span class="label">TÀI</span><span class="range">11-17</span></button>
+            <button class="bet-btn xiu" onclick="placeBet('XIU')"><span class="label">XỈU</span><span class="range">3-10</span></button>
         </div>
 
         <div class="history">
-            <h3>Lịch sử phiên</h3>
+            <h3>Lịch sử phiên (Soi cầu)</h3>
             <div class="history-list" id="history-list"></div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <div class="auth-tabs">
+                <button onclick="showAuth('login')">Đăng nhập</button>
+                <button onclick="showAuth('register')">Đăng ký (+50k)</button>
+            </div>
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="Tên đăng nhập" required>
+                <input type="password" id="password" placeholder="Mật khẩu" required>
+                <button type="submit" class="submit-btn">XÁC NHẬN</button>
+            </form>
         </div>
     </div>
 
