@@ -1,112 +1,21 @@
-:root {
-    --bg-color: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.8);
-    --tai-gradient: linear-gradient(145deg, #f87171, #991b1b);
-    --xiu-gradient: linear-gradient(145deg, #60a5fa, #1e40af);
-    --gold: #f59e0b;
-}
-
-body {
-    margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-.game-container {
-    background: var(--card-bg);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 40px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-    text-align: center;
-    width: 90%;
-    max-width: 450px;
-}
-
-.title span { color: var(--gold); text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
-
-/* Thiết lập 3D */
-.dice-wrapper {
-    perspective: 1200px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    height: 120px;
-    margin: 40px 0;
-}
-
-.dice-3d {
-    width: 60px;
-    height: 60px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.3, 1);
-}
-
-.face {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #1e293b;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* Tọa độ các mặt */
-.front  { transform: rotateY(0deg) translateZ(30px); }
-.back   { transform: rotateY(180deg) translateZ(30px); }
-.right  { transform: rotateY(90deg) translateZ(30px); }
-.left   { transform: rotateY(-90deg) translateZ(30px); }
-.top    { transform: rotateX(90deg) translateZ(30px); }
-.bottom { transform: rotateX(-90deg) translateZ(30px); }
-
-/* Hiển thị kết quả */
-.result-display {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: var(--gold);
-}
-
-/* Nút cược */
-.betting-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 15px;
-}
-
-.bet-btn {
-    flex: 1;
-    height: 100px;
-    border-radius: 24px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-    color: white;
-}
-
-.bet-btn.tai { background: var(--tai-gradient); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3); }
-.bet-btn.xiu { background: var(--xiu-gradient); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
-.bet-btn:active { transform: scale(0.95); }
-
-.label { font-size: 1.6rem; font-weight: 800; display: block; }
-.range { font-size: 0.8rem; opacity: 0.8; }
-
+:root { --gold: #f59e0b; --tai: #ef4444; --xiu: #3b82f6; }
+body { margin: 0; background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.game-container { background: #1e293b; padding: 20px; border-radius: 30px; width: 380px; text-align: center; border: 1px solid #334155; }
+.auth-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 0.9rem; }
+.dice-wrapper { perspective: 1000px; display: flex; justify-content: center; gap: 20px; height: 100px; margin: 30px 0; }
+.dice-3d { width: 50px; height: 50px; position: relative; transform-style: preserve-3d; transition: transform 1.5s cubic-bezier(0.1, 0.7, 0.3, 1); }
+.face { position: absolute; width: 50px; height: 50px; background: white; color: black; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1.2rem; }
+.front { transform: rotateY(0deg) translateZ(25px); } .back { transform: rotateY(180deg) translateZ(25px); } .right { transform: rotateY(90deg) translateZ(25px); } .left { transform: rotateY(-90deg) translateZ(25px); } .top { transform: rotateX(90deg) translateZ(25px); } .bottom { transform: rotateX(-90deg) translateZ(25px); }
+.betting-section { display: flex; gap: 15px; margin-top: 20px; }
+.bet-btn { flex: 1; padding: 15px; border: none; border-radius: 15px; color: white; cursor: pointer; transition: 0.2s; }
+.tai { background: var(--tai); } .xiu { background: var(--xiu); }
+.bet-btn:active { transform: scale(0.9); }
+.history-list { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.dot { width: 15px; height: 15px; border-radius: 50%; }
+.dot.tai { background: var(--tai); } .dot.xiu { background: var(--xiu); }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.modal-content { background: #1e293b; width: 300px; margin: 100px auto; padding: 20px; border-radius: 20px; border: 1px solid var(--gold); }
+.hidden { display: none; }
 /* Lịch sử */
 .history { margin-top: 30px; }
 .history-list {
